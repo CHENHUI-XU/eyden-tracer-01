@@ -26,8 +26,17 @@ public:
 
 	virtual bool Intersect(Ray& ray) override
 	{
-		// --- PUT YOUR CODE HERE ---
+		float t = (m_origin - ray.org).dot(m_normal) / ray.dir.dot(m_normal);
+		
+		
+		if (t < Epsilon || t > ray.t) 	{	
+			return false;}
+			
+		ray.t = t; // passing the current minimum ray distance
+		
 		return true;
+		// --- PUT YOUR CODE HERE ---
+		
 	}
 	
 	

@@ -25,16 +25,83 @@ Mat RenderFrame(ICamera& camera)
 			// Initialize your ray here
 			
 			// Your code
-			
+            
+            Ray r;
+            CCameraPerspective c(camera);
+            c.InitRay(x, y, r);
+            
 			Vec3f col = RGB(0, 0, 0); // background color
 			
 			/*
 			 * Find closest intersection with scene
 			 * objetcs and calculate color
 			 */
-			
-			// Your code
-			
+            int closeboject = 0;
+			t = std::numeric_limits<double>::infinity();
+            if (s1.intersect(r)){
+                if(r.t < t){
+                    closeobject = 1;
+                    t = r.t;
+                }
+            }
+            
+            if (s2.intersect(r)){
+                if(r.t < t){
+                    closeobject = 2;
+                    t = r.t;
+                }
+            }
+            
+            if (s3.intersect(r)){
+                if(r.t < t){
+                    closeobject = 3;
+                    t = r.t;
+                }
+            }
+            
+            if (p1.intersect(r)){
+                if(r.t < t){
+                    closeobject = 4;
+                    t = r.t;
+                }
+            }
+            
+            if (t1.intersect(r)){
+                if(r.t < t){
+                    closeobject = 5;
+                    t = r.t;
+                }
+            }
+            
+            if (t2.intersect(r)){
+                if(r.t < t){
+                    closeobject = 6;
+                    t = r.t;
+                }
+            }
+            
+            if(closeobject = 0){
+                col = = RGB(0, 0, 0);
+            }
+            if(closeobject = 1){
+                col = = RGB(1, 0, 0);
+            }
+            if(closeobject = 2){
+                col = = RGB(0, 1, 0);
+            }
+            if(closeobject = 3){
+                col = = RGB(0, 0, 1);
+            }
+            if(closeobject = 4){
+                col = = RGB(1, 1, 0);
+            }
+            if(closeobject = 5){
+                col = = RGB(0, 1, 1);
+            }
+            if(closeobject = 6){
+                col = = RGB(1, 1, 1);
+            }
+            
 			img.at<Vec3f>(y, x) = col; // store pixel color
 		}
 	

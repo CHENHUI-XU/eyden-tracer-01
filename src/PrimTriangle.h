@@ -27,8 +27,18 @@ public:
 	virtual bool Intersect(Ray& ray) override
 	{
 		// --- PUT YOUR CODE HERE ---
+		const Vec3f s1 = m_b - m_a;
+		const Vec3f s2 = m_c - m_a;
+		
+		const Vec3f f = ray.dir.cross(s2);
+		
+		const float det = s1.dot(f);
+		if (fabs(det) < Epsilon)
+			return false;
+		
 		return true;
 	}
+
 
 	
 private:
